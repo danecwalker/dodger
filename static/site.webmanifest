@@ -3,8 +3,8 @@
   "short_name": "Dodger",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#23ce6b",
-  "theme_color": "#23ce6b",
+  "background_color": "#272d2d",
+  "theme_color": "#272d2d",
   "icons": [
     {
       "src": "assets/manifest-icon-192.maskable.png",
