@@ -1,6 +1,25 @@
 import { Cube } from "./cube";
 import { Player } from "./player";
 
+function iOS() {
+  return (
+    [
+      "iPad Simulator",
+      "iPhone Simulator",
+      "iPod Simulator",
+      "iPad",
+      "iPhone",
+      "iPod",
+    ].includes(navigator.platform) ||
+    // iPad on iOS 13 detection
+    (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  );
+}
+
+function standalone() {
+  return window.matchMedia("(display-mode: standalone)").matches;
+}
+
 export interface Entity {
   x: number;
   y: number;
@@ -215,13 +234,23 @@ export class Game {
         this.height - 40,
       );
 
+      // if standalone
       this.ctx.fillStyle = "#ED1C24";
-      this.ctx.fillRect(
-        0,
-        this.height - 20,
-        (this.width * this.state.health) / 100,
-        20,
-      );
+      if (iOS() && standalone()) {
+        this.ctx.fillRect(
+          0,
+          this.height - 40,
+          (this.width * this.state.health) / 100,
+          40,
+        );
+      } else {
+        this.ctx.fillRect(
+          0,
+          this.height - 20,
+          (this.width * this.state.health) / 100,
+          20,
+        );
+      }
 
       // delta
       frameCount++;
