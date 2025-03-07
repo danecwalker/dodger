@@ -221,18 +221,22 @@ export class Game {
       this.ctx.font = "20px Arial";
       this.ctx.textAlign = "left";
       this.ctx.textBaseline = "top";
-      this.ctx.fillText(`${this.state.highscore}`, 30, 30);
+      if (iOS() && standalone()) {
+        this.ctx.fillText(`${this.state.highscore}`, 30, 30 + 30);
+      } else {
+        this.ctx.fillText(`${this.state.highscore}`, 30, 30);
+      }
 
-      // chances && freq
-      this.ctx.fillStyle = "#edf5fc";
-      this.ctx.font = "20px Arial";
-      this.ctx.textAlign = "center";
-      this.ctx.textBaseline = "middle";
-      this.ctx.fillText(
-        `Chances: ${this.state.badChance.toFixed(2)} | Freq: ${this.state.freq.toFixed(2)}`,
-        this.width / 2,
-        this.height - 40,
-      );
+      // // chances && freq
+      // this.ctx.fillStyle = "#edf5fc";
+      // this.ctx.font = "20px Arial";
+      // this.ctx.textAlign = "center";
+      // this.ctx.textBaseline = "middle";
+      // this.ctx.fillText(
+      //   `Chances: ${this.state.badChance.toFixed(2)} | Freq: ${this.state.freq.toFixed(2)}`,
+      //   this.width / 2,
+      //   this.height - 40,
+      // );
 
       // if standalone
       this.ctx.fillStyle = "#ED1C24";
